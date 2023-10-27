@@ -200,6 +200,13 @@ class Record:
         """
         self.phones = [p for p in self.phones if p.value != phone]
 
+    def remove_phones(self):
+        """
+        Removes all phone numbers from the contact's record.
+
+        """
+        self.phones = []
+
     def edit_phone(self, old_phone, new_phone):
         """
         Edits a phone number in the contact's record.
@@ -422,6 +429,8 @@ def change_contact(args, book: AddressBook):
 
     if record is None:
         raise KeyError(name)
+
+    record.remove_phones()
 
     record.add_phone(new_phone)
     return "Contact updated."
